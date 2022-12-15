@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useTheme } from "./Context/ThemeContext";
 
@@ -15,10 +15,11 @@ export const StandardInput = ({
   type,
   placeholder,
 }: Props) => {
-  const inputRef = useRef<HTMLElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    // @ts-ignore
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   let theme = useTheme();
